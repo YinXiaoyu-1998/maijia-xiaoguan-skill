@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # pt-passport CLI install/update script
-# 三级 fallback：本地 .tgz → 本地 .tgz.txt → curl Gitee raw
+# 三级 fallback：本地 .tgz → 本地 .tgz.txt → curl GitHub raw
 #   - 本地 .tgz       ：开发者 clone GitHub/Gitee 仓库
 #   - 本地 .tgz.txt   ：历史 ClawHub 包形态 (兼容保留)
-#   - 远程 Gitee raw  ：ClawHub 包内不带 tgz, 安装时按需拉取
+#   - 远程 GitHub raw ：ClawHub 包内不带 tgz, 安装时按需拉取
 set -euo pipefail
 
 # 升级 pt-passport 时同步改这里
 PT_PASSPORT_VERSION="0.1.4"
-GITEE_RAW_URL="https://github.com/<GITHUB_OWNER_PLACEHOLDER>/maijia-xiaoguan-skill/raw/main/references/meituan-tablebooking/references/meituan-passport-user-auth/scripts/mtuser-pt-passport-${PT_PASSPORT_VERSION}.tgz"
+GITHUB_RAW_URL="https://raw.githubusercontent.com/YinXiaoyu-1998/maijia-xiaoguan-skill/main/references/meituan-tablebooking/references/meituan-passport-user-auth/scripts/mtuser-pt-passport-${PT_PASSPORT_VERSION}.tgz"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd)"
 
@@ -38,9 +38,9 @@ if [ -z "$TGZ_FILE" ] && [ -z "$TXT_FILE" ]; then
   fi
   TMP_DIR=$(mktemp -d)
   TGZ_FILE="$TMP_DIR/mtuser-pt-passport-${PT_PASSPORT_VERSION}.tgz"
-  echo "本地未找到 tgz 包, 从 Gitee raw 拉取 v${PT_PASSPORT_VERSION}..."
-  if ! curl -fsSL "$GITEE_RAW_URL" -o "$TGZ_FILE"; then
-    echo "远程拉取失败: $GITEE_RAW_URL" >&2
+  echo "本地未找到 tgz 包, 从 GitHub raw 拉取 v${PT_PASSPORT_VERSION}..."
+  if ! curl -fsSL "$GITHUB_RAW_URL" -o "$TGZ_FILE"; then
+    echo "远程拉取失败: $GITHUB_RAW_URL" >&2
     exit 3
   fi
 fi
