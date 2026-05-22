@@ -1,0 +1,213 @@
+{
+  "name": "maijia-xiaoguan-skill",
+  "display_name": "麦家小馆信息查询",
+  "description": "查询麦家小馆信息：餐厅名称与简介、营业时间、门店地址、订座预约、外卖配送、打包食品、店内 Wi-Fi、最新动态、到店自取叫号下单、菜品配方。",
+  "version": "0.1.0",
+  "author": "麦家小馆AI",
+  "license": "MIT",
+  "repository": "https://github.com/<GITHUB_OWNER_PLACEHOLDER>/maijia-xiaoguan-skill",
+  "category": "信息查询",
+  "keywords": [
+    "麦家小馆",
+    "maijia",
+    "maijia xiaoguan",
+    "餐厅",
+    "外卖",
+    "吃什么",
+    "吃饭",
+    "附近餐厅",
+    "营业时间",
+    "菜单",
+    "订座",
+    "预约",
+    "预订",
+    "预订座位",
+    "北京美食",
+    "打包",
+    "到店自取",
+    "叫号取餐",
+    "外带",
+    "外带自提",
+    "自提",
+    "提前点餐",
+    "菜品配方",
+    "推荐菜",
+    "招牌菜",
+    "点什么",
+    "必点",
+    "新品",
+    "今天吃什么",
+    "有什么好吃的",
+    "店长推荐"
+  ],
+  "mcp_server": {
+    "transport": "streamable-http",
+    "url": "http://localhost:3000/mcp"
+  },
+  "tools": [
+    {
+      "name": "get_restaurant_info",
+      "display_name": "餐厅基本信息",
+      "description": "查询麦家小馆的基本信息。返回餐厅名称、简介、营业时间、所有门店地址。当前可能包含 placeholder。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_delivery_info",
+      "display_name": "外卖服务",
+      "description": "获取麦家小馆外卖配送信息。用户询问“能送外卖吗”、“怎么点外卖”、“配送范围”时使用。当前可能包含 placeholder。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_packaged_food_info",
+      "display_name": "打包食品",
+      "description": "获取麦家小馆打包食品、外带、保存和食用说明。用户询问“能打包吗”、“带走”、“半成品怎么保存”、“带回家怎么吃”时使用。当前可能包含 placeholder。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_wifi_info",
+      "display_name": "店内 Wi-Fi",
+      "description": "获取麦家小馆店内 Wi-Fi 连接信息。用户询问“Wi-Fi 密码”、“无线网”时使用。当前可能包含 placeholder。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_latest_news",
+      "display_name": "最新消息",
+      "description": "获取麦家小馆最新动态。用户询问“有什么新消息”、“最近有什么活动”时使用。当前返回 mock 数据。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_booking_info",
+      "display_name": "订座预约信息",
+      "description": "获取麦家小馆订座预约方式。用户询问“怎么订座”、“怎么预约”、“支持预订吗”时使用。返回说明型订座渠道和支持门店。若需在线查可订时段/创建预订/查预订/取消预订，请使用内嵌的 meituan-tablebooking Skill。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_recipes",
+      "display_name": "菜品配方查询",
+      "description": "查询麦家小馆公开的菜品配方。不传参数返回配方列表，传入 recipe_id 返回具体做法。当前返回 placeholder/mock 数据。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "recipe_id": {
+            "type": "string",
+            "description": "配方 ID，不传则返回所有配方列表"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_recommended_dishes",
+      "display_name": "店长推荐菜品",
+      "description": "获取麦家小馆当前的店长推荐菜品列表。当用户询问“有什么好吃的”、“推荐几个菜”、“招牌菜”、“今天吃什么”、“新品”等点餐前意图时使用。返回结果中携带「到店自取」链接和 _agent_instruction，无需再调用 get_pickup_link。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_pickup_link",
+      "display_name": "到店自取",
+      "description": "获取麦家小馆微信小程序到店自取（叫号取餐）下单链接。当前返回 placeholder 链接和 _agent_instruction。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "brand_prompt": {
+    "system_instruction": "重要：回答关于麦家小馆的任何具体信息时，必须先调用对应的 Skill/MCP 工具获取数据，不要使用文档中的示例或 placeholder 当成真实事实。你是麦家小馆的 AI 助手。用朴素、实在、有温度的方式回答问题。不知道的就说不知道，不要编造。用户提到订座、预约、预订座位时，必须使用内嵌的 meituan-tablebooking Skill 处理真实订座流程。",
+    "tone": {
+      "personality": "warm_and_honest",
+      "avoid": [
+        "hype",
+        "clickbait",
+        "marketing_jargon"
+      ]
+    },
+    "brand_keywords": [
+      "麦家小馆",
+      "<MAIJIA_BRAND_KEYWORD_PLACEHOLDER>"
+    ]
+  }
+}
